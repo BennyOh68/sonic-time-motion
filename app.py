@@ -957,17 +957,10 @@ if not df.empty:
             legend_title_text="Activity",
             hovermode="closest",
             height=550,
-            margin=dict(t=30, b=40),
+            margin=dict(l=40, t=30, b=40),
         )
 
         st.plotly_chart(fig, width="stretch", config={"displayModeBar": True})
-        title_text = "📊 Time & Motion Chart"
-        if chart_project:
-            title_text += f" — {chart_project}"
-        st.markdown(
-            f"<h3 style='text-align: center;'>{title_text}</h3>",
-            unsafe_allow_html=True,
-        )
 
     # ── Build filtered table_df matching chart date + rig filters ──────────
     table_df = df.copy()
@@ -999,7 +992,14 @@ if not df.empty:
             del st.session_state["row_selector"]
         st.session_state.clear_selection_pending = False
 
-    # ── Activity Log table with row selection ─────────────────────────────────
+    title_text = "📊 Time & Motion Chart"
+    if chart_project:
+        title_text += f" — {chart_project}"
+
+    st.markdown(
+        f"<div style='margin-left: 40px; margin-right: 0; text-align: center; font-size: 1.75rem; font-weight: 600;'>{title_text}</div>",
+        unsafe_allow_html=True,
+    )
     st.subheader("📋 Activity Log")
     st.caption("💡 Click any row to load it into the sidebar for editing")
 
