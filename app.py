@@ -960,6 +960,7 @@ if not df.empty:
             margin=dict(t=30, b=40),
         )
 
+        st.plotly_chart(fig, width="stretch", config={"displayModeBar": True})
         title_text = "📊 Time & Motion Chart"
         if chart_project:
             title_text += f" — {chart_project}"
@@ -967,7 +968,6 @@ if not df.empty:
             f"<h3 style='text-align: center;'>{title_text}</h3>",
             unsafe_allow_html=True,
         )
-        st.plotly_chart(fig, width="stretch", config={"displayModeBar": True})
 
     # ── Build filtered table_df matching chart date + rig filters ──────────
     table_df = df.copy()
